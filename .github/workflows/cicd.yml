@@ -36,7 +36,7 @@ jobs:
         with:
           host: ${{secrets.EC2_HOST}}
           username: user-app-server
-          password: ${{secrets.EC2_SSH_KEY}}
+          key: ${{secrets.EC2_SSH_KEY}}
           script: |
             cd /home/ubuntu/app
             docker pull karthiq18/backend:latest
