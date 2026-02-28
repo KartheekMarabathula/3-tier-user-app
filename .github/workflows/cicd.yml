@@ -35,7 +35,7 @@ jobs:
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{secrets.EC2_HOST}}
-          username: ubuntu
+          username: user-app-server
           password: ${{secrets.EC2_SSH_KEY}}
           script: |
             cd /home/ubuntu/app
