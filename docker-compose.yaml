@@ -3,15 +3,16 @@ version: '3.8'
 services:
   backend:
     image: karthiq18/backend:latest
+    restart: always
     ports:
       - "5000:5000"
-    environment:
-      DB_HOST: ${RDS_HOST}
-      DB_USER: ${RDS_USER}
-      DB_PASSWORD: ${RDS_PASSWORD}
+    env_file:
+      - .env
+    
 
   frontend:
     image: karthiq18/frontend:latest
+    restart: always
     ports:
       - "80:80"
     depends_on:
