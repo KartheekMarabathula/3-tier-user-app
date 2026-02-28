@@ -1,0 +1,20 @@
+name: cic/cd pipeline with rds
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+       
+
+      
+    
+
+  
