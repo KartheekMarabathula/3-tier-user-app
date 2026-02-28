@@ -34,9 +34,9 @@ jobs:
       - name: deploy to Ec2
         uses: appleboy/ssh-action@v0.1.6
         with:
-          host: ${{ secrets.EC2_HOST }}
+          host: ${{secrets.EC2_HOST}}
           username: ubuntu
-          password: ${{ secrets.EC2_SSH_KEY }}
+          password: ${{secrets.EC2_SSH_KEY}}
           script: |
             cd /home/ubuntu/app
             docker pull karthiq18/backend:latest
