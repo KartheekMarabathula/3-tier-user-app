@@ -1,0 +1,53 @@
+name: cic/cd pipeline with rds
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: login to dockerhub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: build backend image
+        run: docker build -t karthiq18/backend:latest ./backend
+
+      - name: push backend image to docker hub
+        run: docker push karthiq18/backend:latest
+
+      - name: build frontend image
+        run: docker build -t karthiq18/frontend:latest ./frontend
+
+      - name: push frontend image
+        run: docker push karthiq18/frontend:latest
+
+      - name: deploy to Ec2
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{secrets.EC2_HOST}}
+          username: user-app-server
+          key: ${{secrets.EC2_SSH_KEY}}
+          script: |
+            cd /home/ubuntu/app
+            docker pull karthiq18/backend:latest
+            docker pull karthiq18/frontend:latest
+            docker compose down
+            docker compose up -d
+          
+          
+       
+
+      
+    
+
+  

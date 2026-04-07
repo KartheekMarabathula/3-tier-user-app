@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+<<<<<<< HEAD
 const API_URL = "http://localhost:5000";
+=======
+const API_URL = ""http://localhost:5000"";
+>>>>>>> 0cc3041defae765925e8f5e048ba7b950ad664ea
 
 function App() {
   const [users, setUsers] = useState([]);
