@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const API_URL = "http://YOUR_EC2_PUBLIC_IP:5000";
+const API_URL = ""http://localhost:5000"";
 
 function App() {
   const [users, setUsers] = useState([]);
